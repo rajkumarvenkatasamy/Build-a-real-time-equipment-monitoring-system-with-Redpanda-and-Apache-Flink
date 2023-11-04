@@ -76,8 +76,9 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: flink-job-manager
+    #  The volume mount suggests that this Flink Job Manager is using a Kafka connector,
+    # which allows Flink to interact with a Redpanda cluster.
     volumes:
-      - ./flink-consumer-app:/opt/flink/jobs/
       - ./flink-kafka-connector/flink-sql-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-sql-connector-kafka-1.17.1.jar
     command: jobmanager
     networks:
